@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" data-ng-app="gundiAdmin" class="js no-flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths ng-scope after-run"><head><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport" />
+    <meta content="bootstrap admin template" name="description" />
+    <meta content="" name="author" />
+
+    <title>Login | Remark Admin Template</title>
+    <script type="text/javascript">
+        Gundi = {
+            Setting: {}
+        };
+
+                                Gundi.Setting['db.driver'] = 'mongodb';
+                                Gundi.Setting['db.host'] = 'localhost';
+                                Gundi.Setting['db.user'] = 'root';
+                                Gundi.Setting['db.pass'] = '123';
+                                Gundi.Setting['db.name'] = 'test';
+                                Gundi.Setting['db.port'] = '27017';
+                                Gundi.Setting['core.http'] = 'http://';
+                                Gundi.Setting['core.https'] = 'https://';
+                                Gundi.Setting['core.protocol'] = 'http://';
+                                Gundi.Setting['core.host'] = 'localhost';
+                                Gundi.Setting['core.folder'] = '/gundi/';
+                                Gundi.Setting['core.dir_module'] = '/var/www/html/gundi/app/Module/';
+                                Gundi.Setting['core.tmp_ext'] = '.php';
+                                Gundi.Setting['core.themes_dir'] = '/var/www/html/gundi/app/Template/';
+                                Gundi.Setting['core.app_dir'] = '/var/www/html/gundi/app/';
+                                Gundi.Setting['core.path'] = 'http://localhost/gundi/';
+                                Gundi.Setting['core.admin_uri'] = '/admin';
+                                Gundi.Setting['core.prefix'] = 'GUNDI_';
+                                Gundi.Setting['core.session_prefix'] = 'GUNDI_';
+                                Gundi.Setting['core.default_session_container'] = 'GUNDI';
+                                            Gundi.Setting['debug.collectors.phpinfo'] = '1';
+                                Gundi.Setting['debug.collectors.messages'] = '1';
+                                Gundi.Setting['debug.collectors.time'] = '1';
+                                Gundi.Setting['debug.collectors.memory'] = '1';
+                                Gundi.Setting['debug.collectors.exceptions'] = '1';
+                                Gundi.Setting['debug.options.exceptions.chain'] = '1';
+                                Gundi.Setting['debug.collectors.default_request'] = '1';
+                                Gundi.Setting['debug.include_vendors'] = '1';
+                                Gundi.Setting['debug.capture_ajax'] = '1';
+                                Gundi.Setting['cache.driver'] = 'FileSystem';
+                                Gundi.Setting['cache.session_storage_to_cache'] = '1';
+                                Gundi.Setting['language.default_language_code'] = 'en';
+                                Gundi.Setting['language.cache_phrases'] = '1';
+                                Gundi.Setting['language.auto_detect_language_on_browser'] = '1';
+                                            Gundi.Setting['admin.test'] = '123432';
+                                Gundi.Setting['admin.test2'] = 'hello';
+                                Gundi.Setting['debugbar.enabled'] = '1';
+            </script>
+    
+    <!-- Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/defaultAdmin/css/site.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/static/animsition/animsition.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/static/asscrollable/asScrollable.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/static/switchery/switchery.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/static/intro-js/introjs.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/static/slidepanel/slidePanel.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/static/flag-icon-css/flag-icon.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/defaultAdmin/fonts/web-icons/web-icons.min.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/defaultAdmin/fonts/brand-icons/brand-icons.min.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/defaultAdmin/css/bootstrap.min.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/defaultAdmin/css/bootstrap-extend.min.css" /><link type="text/css" rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" /><link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css" />    <link href="http://localhost/gundi/vendor/maximebf/debugbar/src/DebugBar/Resources/vendor/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<link href="http://localhost/gundi/vendor/maximebf/debugbar/src/DebugBar/Resources/vendor/highlightjs/styles/github.css" type="text/css" rel="stylesheet" />
+<link href="http://localhost/gundi/vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.css" type="text/css" rel="stylesheet" />
+<link href="http://localhost/gundi/vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.css" type="text/css" rel="stylesheet" />
+<link href="http://localhost/gundi/vendor/maximebf/debugbar/src/DebugBar/Resources/openhandler.css" type="text/css" rel="stylesheet" />
+<script src="http://localhost/gundi/vendor/maximebf/debugbar/src/DebugBar/Resources/vendor/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script src="http://localhost/gundi/vendor/maximebf/debugbar/src/DebugBar/Resources/vendor/highlightjs/highlight.pack.js" type="text/javascript"></script>
+<script src="http://localhost/gundi/vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js" type="text/javascript"></script>
+<script src="http://localhost/gundi/vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js" type="text/javascript"></script>
+<script src="http://localhost/gundi/vendor/maximebf/debugbar/src/DebugBar/Resources/openhandler.js" type="text/javascript"></script>
+<script type="text/javascript">jQuery.noConflict(true);</script>
+</head>
+<body class="site-menubar-unfold modal-open">
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- begin nav -->
+<nav role="navigation" class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega">
+
+    <div class="navbar-header">
+        <button data-toggle="menubar" class="navbar-toggle hamburger hamburger-close navbar-toggle-left hided unfolded" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="hamburger-bar"></span>
+        </button>
+        <button data-toggle="collapse" data-target="#site-navbar-collapse" class="navbar-toggle collapsed" type="button">
+            <i aria-hidden="true" class="icon wb-more-horizontal"></i>
+        </button>
+        <button data-toggle="collapse" data-target="#site-navbar-search" class="navbar-toggle collapsed" type="button">
+            <span class="sr-only">Toggle Search</span>
+            <i aria-hidden="true" class="icon wb-search"></i>
+        </button>
+        <div class="navbar-brand navbar-brand-center">
+            <img title="Gundi" src="http://localhost/gundi/app/Template/defaultAdmin/img/gundi.png" class="navbar-brand-logo" />
+            <a href="#/" data-slug="Dashboard" data-ui-sref="dashboard" style="color: #76838F;text-transform: uppercase;font-weight: bold;font-size: 24px;" class="navbar-brand-text">Gundi</a>
+        </div>
+    </div>
+
+    <div class="navbar-container container-fluid">
+        <!-- Navbar Collapse -->
+        <div id="site-navbar-collapse" class="collapse navbar-collapse navbar-collapse-toolbar">
+            <!-- Navbar Toolbar -->
+            <ul class="nav navbar-toolbar">
+                <li id="toggleMenubar" class="hidden-float">
+                    <a role="button" href="#" data-toggle="menubar">
+                        <i class="icon hamburger hamburger-arrow-left hided unfolded">
+                            <span class="sr-only">Toggle menubar</span>
+                            <span class="hamburger-bar"></span>
+                        </i>
+                    </a>
+                </li>
+                <li id="toggleFullscreen" class="hidden-xs">
+                    <a role="button" href="#" data-toggle="fullscreen" class="icon icon-fullscreen">
+                        <span class="sr-only">Toggle fullscreen</span>
+                    </a>
+                </li>
+                <li class="hidden-float">
+                    <a role="button" href="#site-navbar-search" data-toggle="collapse" class="icon wb-search">
+                        <span class="sr-only">Toggle Search</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- End Navbar Toolbar -->
+
+            <!-- Navbar Toolbar Right -->
+            <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+    <li class="dropdown">
+        <a role="button" aria-expanded="false" data-animation="slide-bottom" href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle">
+            <span class="flag-icon flag-icon-us"></span>
+        </a>
+        <ul role="menu" class="dropdown-menu">
+            <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)">
+                    <span class="flag-icon flag-icon-gb"></span> English</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)">
+                    <span class="flag-icon flag-icon-fr"></span> French</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)">
+                    <span class="flag-icon flag-icon-cn"></span> Chinese</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)">
+                    <span class="flag-icon flag-icon-de"></span> German</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)">
+                    <span class="flag-icon flag-icon-nl"></span> Dutch</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a role="button" data-animation="slide-bottom" aria-expanded="false" href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle">
+              <span class="avatar avatar-online">
+                <img alt="..." src="../assets/portraits/5.jpg" />
+                <i></i>
+              </span>
+        </a>
+        <ul role="menu" class="dropdown-menu">
+            <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)"><i aria-hidden="true" class="icon wb-user"></i>
+                    Profile</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)"><i aria-hidden="true" class="icon wb-payment"></i> Billing</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" href="javascript:void(0)"><i aria-hidden="true" class="icon wb-settings"></i> Settings</a>
+            </li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation">
+                <a role="menuitem" href="http://localhost/gundi/index.php/admin/logout"><i aria-hidden="true" class="icon wb-power"></i> Logout</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a role="button" data-animation="slide-bottom" aria-expanded="false" title="Notifications" href="javascript:void(0)" data-toggle="dropdown">
+            <i aria-hidden="true" class="icon wb-bell"></i>
+            <span class="badge badge-danger up">5</span>
+        </a>
+        <ul role="menu" class="dropdown-menu dropdown-menu-right dropdown-menu-media">
+            <li role="presentation" class="dropdown-menu-header">
+                <h5>NOTIFICATIONS</h5>
+                <span class="label label-round label-danger">New 5</span>
+            </li>
+
+            <li role="presentation" class="list-group">
+                <div data-role="container">
+                    <div data-role="content">
+                        <a role="menuitem" href="javascript:void(0)" class="list-group-item">
+                            <div class="media">
+                                <div class="media-left padding-right-10">
+                                    <i aria-hidden="true" class="icon wb-order bg-red-600 white icon-circle"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">A new order has been placed</h6>
+                                    <time datetime="2015-06-12T20:50:48+08:00" class="media-meta">5 hours
+                                        ago
+                                    </time>
+                                </div>
+                            </div>
+                        </a>
+                        <a role="menuitem" href="javascript:void(0)" class="list-group-item">
+                            <div class="media">
+                                <div class="media-left padding-right-10">
+                                    <i aria-hidden="true" class="icon wb-user bg-green-600 white icon-circle"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Completed the task</h6>
+                                    <time datetime="2015-06-11T18:29:20+08:00" class="media-meta">2 days
+                                        ago
+                                    </time>
+                                </div>
+                            </div>
+                        </a>
+                        <a role="menuitem" href="javascript:void(0)" class="list-group-item">
+                            <div class="media">
+                                <div class="media-left padding-right-10">
+                                    <i aria-hidden="true" class="icon wb-settings bg-red-600 white icon-circle"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Settings updated</h6>
+                                    <time datetime="2015-06-11T14:05:00+08:00" class="media-meta">2 days
+                                        ago
+                                    </time>
+                                </div>
+                            </div>
+                        </a>
+                        <a role="menuitem" href="javascript:void(0)" class="list-group-item">
+                            <div class="media">
+                                <div class="media-left padding-right-10">
+                                    <i aria-hidden="true" class="icon wb-calendar bg-blue-600 white icon-circle"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Event started</h6>
+                                    <time datetime="2015-06-10T13:50:18+08:00" class="media-meta">3 days
+                                        ago
+                                    </time>
+                                </div>
+                            </div>
+                        </a>
+                        <a role="menuitem" href="javascript:void(0)" class="list-group-item">
+                            <div class="media">
+                                <div class="media-left padding-right-10">
+                                    <i aria-hidden="true" class="icon wb-chat bg-orange-600 white icon-circle"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Message received</h6>
+                                    <time datetime="2015-06-10T12:34:48+08:00" class="media-meta">3 days
+                                        ago
+                                    </time>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li role="presentation" class="dropdown-menu-footer">
+                <a role="button" href="javascript:void(0)" class="dropdown-menu-footer-btn">
+                    <i aria-hidden="true" class="icon wb-settings"></i>
+                </a>
+                <a role="menuitem" href="javascript:void(0)">
+                    All notifications
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a role="button" data-animation="slide-bottom" aria-expanded="false" title="Messages" href="javascript:void(0)" data-toggle="dropdown">
+            <i aria-hidden="true" class="icon wb-envelope"></i>
+            <span class="badge badge-info up">3</span>
+        </a>
+        <ul role="menu" class="dropdown-menu dropdown-menu-right dropdown-menu-media">
+            <li role="presentation" class="dropdown-menu-header">
+                <h5>MESSAGES</h5>
+                <span class="label label-round label-info">New 3</span>
+            </li>
+
+            <li role="presentation" class="list-group">
+                <div data-role="container">
+                    <div data-role="content">
+                        <a role="menuitem" href="javascript:void(0)" class="list-group-item">
+                            <div class="media">
+                                <div class="media-left padding-right-10">
+                          <span class="avatar avatar-sm avatar-online">
+                            <img alt="..." src="../assets/portraits/2.jpg" />
+                            <i></i>
+                          </span>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Mary Adams</h6>
+                                    <div class="media-meta">
+                                        <time datetime="2015-06-17T20:22:05+08:00">30 minutes ago</time>
+                                    </div>
+                                    <div class="media-detail">Anyways, i would like just do it</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a role="menuitem" href="javascript:void(0)" class="list-group-item">
+                            <div class="media">
+                                <div class="media-left padding-right-10">
+                          <span class="avatar avatar-sm avatar-off">
+                            <img alt="..." src="../assets/portraits/3.jpg" />
+                            <i></i>
+                          </span>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Caleb Richards</h6>
+                                    <div class="media-meta">
+                                        <time datetime="2015-06-17T12:30:30+08:00">12 hours ago</time>
+                                    </div>
+                                    <div class="media-detail">I checheck the document. But there seems</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a role="menuitem" href="javascript:void(0)" class="list-group-item">
+                            <div class="media">
+                                <div class="media-left padding-right-10">
+                          <span class="avatar avatar-sm avatar-busy">
+                            <img alt="..." src="../assets/portraits/4.jpg" />
+                            <i></i>
+                          </span>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">June Lane</h6>
+                                    <div class="media-meta">
+                                        <time datetime="2015-06-16T18:38:40+08:00">2 days ago</time>
+                                    </div>
+                                    <div class="media-detail">Lorem ipsum Id consectetur et minim</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a role="menuitem" href="javascript:void(0)" class="list-group-item">
+                            <div class="media">
+                                <div class="media-left padding-right-10">
+                          <span class="avatar avatar-sm avatar-away">
+                            <img alt="..." src="../assets/portraits/5.jpg" />
+                            <i></i>
+                          </span>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Edward Fletcher</h6>
+                                    <div class="media-meta">
+                                        <time datetime="2015-06-15T20:34:48+08:00">3 days ago</time>
+                                    </div>
+                                    <div class="media-detail">Dolor et irure cupidatat commodo nostrud
+                                        nostrud.
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li role="presentation" class="dropdown-menu-footer">
+                <a role="button" href="javascript:void(0)" class="dropdown-menu-footer-btn">
+                    <i aria-hidden="true" class="icon wb-settings"></i>
+                </a>
+                <a role="menuitem" href="javascript:void(0)">
+                    See all messages
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li id="toggleChat">
+        <a data-url="site-sidebar.tpl" title="Chat" href="javascript:void(0)" data-toggle="site-sidebar">
+            <i aria-hidden="true" class="icon wb-chat"></i>
+        </a>
+    </li>
+</ul>            <!-- End Navbar Toolbar Right -->
+        </div>
+        <!-- End Navbar Collapse -->
+
+        <!-- Site Navbar Seach -->
+        <div id="site-navbar-search" class="collapse navbar-search-overlap">
+            <form role="search" class="ng-pristine ng-valid">
+                <div class="form-group">
+                    <div class="input-search">
+                        <i aria-hidden="true" class="input-search-icon wb-search"></i>
+                        <input type="text" placeholder="Search..." name="site-search" class="form-control" />
+                        <button aria-label="Close" data-toggle="collapse" data-target="#site-navbar-search" class="input-search-close icon wb-close" type="button"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- End Site Navbar Seach -->
+    </div>
+</nav>
+<!-- END nav -->
+
+<!--left menu-->
+<div class="site-menubar">
+    <div class="site-menubar-body hoverscorll-disabled scrollable scrollable-inverse is-enabled scrollable-vertical" style="position: relative;">
+        <div class="scrollable-container" style="height: 720px; width: 275px;">
+            <div class="scrollable-content" style="width: 260px;">
+                <ul class="site-menu" style="transform: translate3d(0px, 0px, 0px);">
+                    <li class="site-menu-category">CMS</li>
+                    <li class="site-menu-item">
+                        <a data-slug="menus" data-ui-sref="menus" class="animsition-link">
+                            <i aria-hidden="true" class="site-menu-icon wb-menu"></i>
+                            <span class="site-menu-title">Menus</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-item">
+                        <a data-slug="blocks" data-ui-sref="blocks" class="animsition-link" href="#/blocks">
+                            <i aria-hidden="true" class="site-menu-icon wb-grid-4"></i>
+                            <span class="site-menu-title">Blocks</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-item">
+                        <a data-slug="pages" data-ui-sref="pages" class="animsition-link">
+                            <i aria-hidden="true" class="site-menu-icon wb-file"></i>
+                            <span class="site-menu-title">Pages</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-category">Extensions</li>
+                    <li class="site-menu-item">
+                        <a data-slug="modules" data-ui-sref="modules" class="animsition-link" href="#/modules">
+                            <i aria-hidden="true" class="site-menu-icon wb-plugin"></i>
+                            <span class="site-menu-title">Module</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-item">
+                        <a data-slug="language" data-ui-sref="language" class="animsition-link" href="#/language">
+                            <i aria-hidden="true" class="site-menu-icon wb-briefcase"></i>
+                            <span class="site-menu-title">Language</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-category">Tools</li>
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i aria-hidden="true" class="site-menu-icon wb-hammer"></i>
+                            <span class="site-menu-title">Maintenance</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item">
+                                <a data-slug="cacheManager" data-ui-sref="cacheManager" class="animsition-link" href="#/cacheManager">
+                                    <i aria-hidden="true" class="site-menu-icon "></i>
+                                    <span class="site-menu-title">Cache Manager</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="site-menu-category">Setting</li>
+                    <li class="site-menu-item">
+                        <a data-slug="params" data-ui-sref="params" class="animsition-link" href="#/params">
+                            <i aria-hidden="true" class="site-menu-icon wb-wrench"></i>
+                            <span class="site-menu-title">Params</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <div class="scrollable-bar scrollable-bar-vertical scrollable-bar-hide is-disabled" draggable="false"><div class="scrollable-bar-handle"></div></div></div>
+
+    <div class="site-menubar-footer">
+        <a data-original-title="Settings" data-toggle="tooltip" data-placement="top" class="fold-show" href="javascript: void(0);">
+            <span aria-hidden="true" class="icon wb-settings"></span>
+        </a>
+        <a data-original-title="Lock" data-toggle="tooltip" data-placement="top" href="javascript: void(0);">
+            <span aria-hidden="true" class="icon wb-eye-close"></span>
+        </a>
+        <a data-original-title="Logout" data-toggle="tooltip" data-placement="top" href="http://localhost/gundi/index.php/logout/admin" class="logout">
+            <span aria-hidden="true" class="icon wb-power"></span>
+        </a>
+    </div>
+</div><!-- end left menu-->
+<!-- Content -->
+<!-- uiView:  --><div data-ui-view="" class="ng-scope"><div data-ng-controller="BlocksCtrl" class="page ng-scope">
+    <div class="page-header">
+        <h1 class="page-title">Blocks</h1>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="panel">
+            <div class="panel-body container-fluid">
+                <div class="margin-lg-0">
+                    <div aria-hidden="true" aria-labelledby="modalAddBlock" role="dialog" tabindex="-1" id="modalAddBlock" class="modal fade in" style="display: block;">
+                        <div class="modal-dialog">
+                            <form class="ng-valid ng-dirty ng-submitted ng-valid-parse">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <!-- ngIf: isBlockUpdate==true --><h4 id="updateBlockLabel" data-ng-if="isBlockUpdate==true" class="modal-title ng-scope">Update Block</h4><!-- end ngIf: isBlockUpdate==true -->
+                                        <!-- ngIf: isBlockUpdate==false -->
+                                    </div>
+                                    <div class="modal-body">
+                                        <label>Marker </label>
+                                        <select ng-model="block.blockName" class="form-control ng-valid ng-dirty ng-touched">
+                                            <!-- ngRepeat: marker in markers --><option value="left_menu" data-ng-repeat="marker in markers" class="ng-binding ng-scope">left_menu</option><!-- end ngRepeat: marker in markers --><option value="top_menu" data-ng-repeat="marker in markers" class="ng-binding ng-scope">top_menu</option><!-- end ngRepeat: marker in markers -->
+                                        </select>
+                                        <label>Route </label>
+                                        <select ng-model="block.route" class="form-control ng-valid ng-dirty ng-touched ng-valid-parse">
+                                            <option value="*">All Routes</option>
+                                            <!-- ngRepeat: route in routes --><option value="/admin" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin</option><!-- end ngRepeat: route in routes --><option value="/admin/modules" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/(:num)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/(:num)</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/install/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/install/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/setStatus/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/setStatus/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/uninstall/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/uninstall/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/reinstall/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/reinstall/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/upgrade/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/upgrade/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/cacheManager/clear" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/cacheManager/clear</option><!-- end ngRepeat: route in routes --><option value="/admin/blockFilter" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockFilter</option><!-- end ngRepeat: route in routes --><option value="/admin/block/(:num)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/block/(:num)</option><!-- end ngRepeat: route in routes --><option value="/admin/blockAdd" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockAdd</option><!-- end ngRepeat: route in routes --><option value="/admin/blockUpdate/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockUpdate/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/blockDelete/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockDelete/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/blockEnable/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockEnable/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/blockDisable/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockDisable/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/language" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/language</option><!-- end ngRepeat: route in routes --><option value="/admin/getLanguage/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/getLanguage/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/setDefault/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/setDefault/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/createLanguage" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/createLanguage</option><!-- end ngRepeat: route in routes --><option value="/admin/updateLanguage" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/updateLanguage</option><!-- end ngRepeat: route in routes --><option value="/admin/deleteLanguage/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/deleteLanguage/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/findPhrase/(:num)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/findPhrase/(:num)</option><!-- end ngRepeat: route in routes --><option value="/admin/filters" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/filters</option><!-- end ngRepeat: route in routes --><option value="/admin/updatePhrase" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/updatePhrase</option><!-- end ngRepeat: route in routes --><option value="/admin/deletePhrase" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/deletePhrase</option><!-- end ngRepeat: route in routes --><option value="/admin/addPhrase" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/addPhrase</option><!-- end ngRepeat: route in routes --><option value="/login/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/login/(:any)</option><!-- end ngRepeat: route in routes --><option value="/logout/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/logout/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/paramFilter" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/paramFilter</option><!-- end ngRepeat: route in routes --><option value="/admin/param/(:num)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/param/(:num)</option><!-- end ngRepeat: route in routes --><option value="/admin/paramAdd" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/paramAdd</option><!-- end ngRepeat: route in routes --><option value="/admin/paramUpdate" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/paramUpdate</option><!-- end ngRepeat: route in routes -->
+                                        </select>
+                                        <label>Block </label>
+                                        <input type="text" name="block_callback" id="block_callback" ng-model="block.callback" class="form-control ng-valid ng-dirty ng-touched ng-valid-parse" />
+                                        <label>Status </label>
+                                        <div class="radio-custom radio-primary">
+                                            <input type="radio" value="active" checked="checked" name="block_status" ng-model="block.status" id="block_enabled" class="ng-valid ng-dirty ng-touched" />
+                                            <label for="block_enabled">Active</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary">
+                                            <input type="radio" value="inactive" name="block_status" ng-model="block.status" id="block_disabled" class="ng-pristine ng-untouched ng-valid" />
+                                            <label for="block_disabled">Inactive</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                                        <!-- ngIf: isBlockUpdate==true --><button data-ng-click="update(block._id)" class="btn btn-primary ng-scope" data-ng-if="isBlockUpdate==true" type="submit">Update Block</button><!-- end ngIf: isBlockUpdate==true -->
+                                        <!-- ngIf: isBlockUpdate==false -->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <div ng-init="filter()" style="overflow:hidden;" class="table-responsive padding-top-20">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select ng-model="currentMarker" ng-change="getBlocks(true)" id="blocks" class="form-control ng-pristine ng-untouched ng-valid">
+                                            <option value="">All Markers</option>
+                                            <!-- ngRepeat: marker in markers --><option value="left_menu" data-ng-repeat="marker in markers" class="ng-binding ng-scope">left_menu</option><!-- end ngRepeat: marker in markers --><option value="top_menu" data-ng-repeat="marker in markers" class="ng-binding ng-scope">top_menu</option><!-- end ngRepeat: marker in markers -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <select ng-model="currentRoute" ng-change="getBlocks(true)" id="routes" class="form-control ng-pristine ng-untouched ng-valid">
+                                            <option value="">All Routes</option>
+                                            <!-- ngRepeat: route in routes --><option value="/admin" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin</option><!-- end ngRepeat: route in routes --><option value="/admin/modules" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/(:num)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/(:num)</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/install/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/install/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/setStatus/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/setStatus/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/uninstall/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/uninstall/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/reinstall/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/reinstall/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/modules/upgrade/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/modules/upgrade/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/cacheManager/clear" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/cacheManager/clear</option><!-- end ngRepeat: route in routes --><option value="/admin/blockFilter" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockFilter</option><!-- end ngRepeat: route in routes --><option value="/admin/block/(:num)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/block/(:num)</option><!-- end ngRepeat: route in routes --><option value="/admin/blockAdd" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockAdd</option><!-- end ngRepeat: route in routes --><option value="/admin/blockUpdate/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockUpdate/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/blockDelete/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockDelete/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/blockEnable/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockEnable/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/blockDisable/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/blockDisable/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/language" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/language</option><!-- end ngRepeat: route in routes --><option value="/admin/getLanguage/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/getLanguage/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/setDefault/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/setDefault/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/createLanguage" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/createLanguage</option><!-- end ngRepeat: route in routes --><option value="/admin/updateLanguage" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/updateLanguage</option><!-- end ngRepeat: route in routes --><option value="/admin/deleteLanguage/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/deleteLanguage/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/findPhrase/(:num)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/findPhrase/(:num)</option><!-- end ngRepeat: route in routes --><option value="/admin/filters" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/filters</option><!-- end ngRepeat: route in routes --><option value="/admin/updatePhrase" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/updatePhrase</option><!-- end ngRepeat: route in routes --><option value="/admin/deletePhrase" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/deletePhrase</option><!-- end ngRepeat: route in routes --><option value="/admin/addPhrase" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/addPhrase</option><!-- end ngRepeat: route in routes --><option value="/login/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/login/(:any)</option><!-- end ngRepeat: route in routes --><option value="/logout/(:any)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/logout/(:any)</option><!-- end ngRepeat: route in routes --><option value="/admin/paramFilter" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/paramFilter</option><!-- end ngRepeat: route in routes --><option value="/admin/param/(:num)" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/param/(:num)</option><!-- end ngRepeat: route in routes --><option value="/admin/paramAdd" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/paramAdd</option><!-- end ngRepeat: route in routes --><option value="/admin/paramUpdate" data-ng-repeat="route in routes" class="ng-binding ng-scope">/admin/paramUpdate</option><!-- end ngRepeat: route in routes -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-sm btn-primary" type="button" title="Add Block" data-target="#modalAddBlock" data-ng-click="showCreateBox()" data-toggle="modal" style="float: right;">
+                                            <i class="icon wb-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Marker</th>
+                                <th>Route</th>
+                                <th>Block</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody infinite-scroll-distance="0" infinite-scroll-disabled="scrollDisable" infinite-scroll="getBlocks(false)">
+                            <!-- ngRepeat: blockItem in blocks --><tr id="57177f107af9b6aa3b8b456a" data-ng-repeat="blockItem in blocks" class="ng-scope">
+                                <td>
+                                    <!-- ngIf: blockItem.status == 'active' --><div data-ng-if="blockItem.status == 'active'" class="ng-scope"><i style="cursor:pointer;color:green;" class="icon wb-medium-point" data-ng-click="disable(blockItem._id)"></i></div><!-- end ngIf: blockItem.status == 'active' -->
+                                    <!-- ngIf: blockItem.status != 'active' -->
+                                </td>
+                                <td class="ng-binding">top_menu</td>
+                                <td class="ng-binding">/admin/modules</td>
+                                <td>
+                                    <input type="text" readonly="readonly" value="\Module\Block\Component\Controller\Block@process/Module/Block/Component/Block/Index@process" name="block_value" class="form-control" />
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" type="button" title="Edit" data-target="#modalAddBlock" data-toggle="modal" data-ng-click="showUpdateBox(blockItem._id)">
+                                        <i class="icon wb-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" type="button" title="Delete" data-ng-click="delete(blockItem._id)">
+                                        <i class="icon wb-close"></i>
+                                    </button>
+                                </td>
+                            </tr><!-- end ngRepeat: blockItem in blocks --><tr id="57177f107af9b6aa3b8b456b" data-ng-repeat="blockItem in blocks" class="ng-scope">
+                                <td>
+                                    <!-- ngIf: blockItem.status == 'active' --><div data-ng-if="blockItem.status == 'active'" class="ng-scope"><i style="cursor:pointer;color:green;" class="icon wb-medium-point" data-ng-click="disable(blockItem._id)"></i></div><!-- end ngIf: blockItem.status == 'active' -->
+                                    <!-- ngIf: blockItem.status != 'active' -->
+                                </td>
+                                <td class="ng-binding">left_menu</td>
+                                <td class="ng-binding">/admin/block/(:any)</td>
+                                <td>
+                                    <input type="text" readonly="readonly" value="\Module\Block\Component\Controller\Block@process" name="block_value" class="form-control" />
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" type="button" title="Edit" data-target="#modalAddBlock" data-toggle="modal" data-ng-click="showUpdateBox(blockItem._id)">
+                                        <i class="icon wb-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" type="button" title="Delete" data-ng-click="delete(blockItem._id)">
+                                        <i class="icon wb-close"></i>
+                                    </button>
+                                </td>
+                            </tr><!-- end ngRepeat: blockItem in blocks --><tr id="57177f287af9b62a3aa2072b" data-ng-repeat="blockItem in blocks" class="ng-scope">
+                                <td>
+                                    <!-- ngIf: blockItem.status == 'active' --><div data-ng-if="blockItem.status == 'active'" class="ng-scope"><i style="cursor:pointer;color:green;" class="icon wb-medium-point" data-ng-click="disable(blockItem._id)"></i></div><!-- end ngIf: blockItem.status == 'active' -->
+                                    <!-- ngIf: blockItem.status != 'active' -->
+                                </td>
+                                <td class="ng-binding">left_menu</td>
+                                <td class="ng-binding">*</td>
+                                <td>
+                                    <input type="text" readonly="readonly" value="\Module\ModuleName\Component\Block\Blockname@process" name="block_value" class="form-control" />
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" type="button" title="Edit" data-target="#modalAddBlock" data-toggle="modal" data-ng-click="showUpdateBox(blockItem._id)">
+                                        <i class="icon wb-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" type="button" title="Delete" data-ng-click="delete(blockItem._id)">
+                                        <i class="icon wb-close"></i>
+                                    </button>
+                                </td>
+                            </tr><!-- end ngRepeat: blockItem in blocks -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
+<!-- End Content -->
+
+<!-- Footer -->
+<footer class="site-footer">
+    <span class="site-footer-legal">© 2015 Remark</span>
+    <div class="site-footer-right">
+        Crafted with <i class="red-600 wb wb-heart"></i> by <a href="http://themeforest.net/user/amazingSurge">amazingSurge</a>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script type="text/javascript" src="http://localhost/gundi/static/jquery/jquery.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular/angular.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-ui-router/angular-ui-router.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-infinite/ng-infinite-scroll.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-ui-bootstrap/ui-bootstrap.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-ui-bootstrap/ui-bootstrap-tpls.min.js"></script><script type="text/javascript" src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Admin/Static/app.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Admin/Static/Controller/module.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Admin/Static/Controller/cacheManager.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Language/Static/Controller/language.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Language/Static/Controller/phrase.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Block/Static/Controller/block.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Param/Static/Controller/param.js"></script><script type="text/javascript" src="http://localhost/gundi/static/modernizr/modernizr.js"></script><script type="text/javascript" src="http://localhost/gundi/static/breakpoints/breakpoints.js"></script><script type="text/javascript" src="http://localhost/gundi/static/bootstrap/bootstrap.js"></script><script type="text/javascript" src="http://localhost/gundi/static/animsition/jquery.animsition.js"></script><script type="text/javascript" src="http://localhost/gundi/static/asscroll/jquery-asScroll.js"></script><script type="text/javascript" src="http://localhost/gundi/static/mousewheel/jquery.mousewheel.js"></script><script type="text/javascript" src="http://localhost/gundi/static/asscrollable/jquery.asScrollable.all.js"></script><script type="text/javascript" src="http://localhost/gundi/static/ashoverscroll/jquery-asHoverScroll.js"></script><script type="text/javascript" src="http://localhost/gundi/static/switchery/switchery.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/intro-js/intro.js"></script><script type="text/javascript" src="http://localhost/gundi/static/screenfull/screenfull.js"></script><script type="text/javascript" src="http://localhost/gundi/static/slidepanel/jquery-slidePanel.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/core.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/site.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/sections/menu.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/sections/menubar.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/sections/sidebar.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/configs/config-colors.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/configs/config-tour.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/components/asscrollable.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/components/animsition.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/components/slidepanel.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/components/switchery.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Template/defaultAdmin/js/components/jquery-placeholder.js"></script><script>
+    Breakpoints();
+
+    (function (document, window, $) {
+        'use strict';
+
+        var Site = window.Site;
+        $(document).ready(function () {
+            Site.run();
+        });
+    })(document, window, jQuery);
+</script>
+<script type="text/javascript">
+var phpdebugbar = new PhpDebugBar.DebugBar();
+phpdebugbar.addTab("messages", new PhpDebugBar.DebugBar.Tab({"icon":"list-alt","title":"Messages", "widget": new PhpDebugBar.Widgets.MessagesWidget()}));
+phpdebugbar.addIndicator("time", new PhpDebugBar.DebugBar.Indicator({"icon":"clock-o","tooltip":"Request Duration"}), "right");
+phpdebugbar.addTab("timeline", new PhpDebugBar.DebugBar.Tab({"icon":"tasks","title":"Timeline", "widget": new PhpDebugBar.Widgets.TimelineWidget()}));
+phpdebugbar.addIndicator("memory", new PhpDebugBar.DebugBar.Indicator({"icon":"cogs","tooltip":"Memory Usage"}), "right");
+phpdebugbar.addTab("exceptions", new PhpDebugBar.DebugBar.Tab({"icon":"bug","title":"Exceptions", "widget": new PhpDebugBar.Widgets.ExceptionsWidget()}));
+phpdebugbar.addTab("request", new PhpDebugBar.DebugBar.Tab({"icon":"tags","title":"Request", "widget": new PhpDebugBar.Widgets.VariableListWidget()}));
+phpdebugbar.setDataMap({
+"messages": ["messages.messages", []],
+"messages:badge": ["messages.count", null],
+"time": ["time.duration_str", '0ms'],
+"timeline": ["time", {}],
+"memory": ["memory.peak_usage_str", '0B'],
+"exceptions": ["exceptions.exceptions", []],
+"exceptions:badge": ["exceptions.count", null],
+"request": ["request", {}]
+});
+phpdebugbar.restoreState();
+phpdebugbar.ajaxHandler = new PhpDebugBar.AjaxHandler(phpdebugbar);
+phpdebugbar.ajaxHandler.bindToXHR();
+phpdebugbar.addDataSet({"__meta":{"id":"08630d87fb7aa20a1c39cc0b0f0db91f","datetime":"2016-04-20 19:07:34","utime":1461157654.1282,"method":"GET","uri":"\/gundi\/index.php\/admin","ip":"127.0.0.1"},"php":{"version":"5.5.33-1+deb.sury.org~trusty+1","interface":"apache2handler"},"messages":{"count":0,"messages":[]},"time":{"start":1461157654,"end":1461157654.1283,"duration":0.12826704978943,"duration_str":"128.27ms","measures":[{"label":"Application","start":1461157654.103,"relative_start":0.10302305221558,"end":1461157654.1283,"relative_end":1.1920928955078e-5,"duration":0.025255918502808,"duration_str":"25.26ms","params":[],"collector":null}]},"memory":{"peak_usage":3407872,"peak_usage_str":"3.25MB"},"exceptions":{"count":0,"exceptions":[]},"request":{"$_GET":"[]","$_POST":"[]","$_SESSION":"array:6 [\n  \"GUNDI_secKey\" =&gt; \"6958d52ca15266f19eb600e3f8c09804\"\n  \"GUNDI_lng_code\" =&gt; \"en\"\n  \"GUNDI_secure_token\" =&gt; \"1e1a433834dfe013ec6c9f36b343f297\"\n  \"GUNDI_secure_token_time\" =&gt; 1461157649\n  \"PHPDEBUGBAR_STACK_DATA\" =&gt; []\n  \"Aura\\Auth\\Auth\" =&gt; array:5 [\n    \"status\" =&gt; \"VALID\"\n    \"first_active\" =&gt; 1461157654\n    \"last_active\" =&gt; 1461157654\n    \"username\" =&gt; \"admin\"\n    \"userdata\" =&gt; array:9 [\n      \"_id\" =&gt; \"57177a357af9b607388b457b\"\n      \"username\" =&gt; \"admin\"\n      \"email\" =&gt; \"admin@mebo.asia\"\n      \"password\" =&gt; \"$2y$10$WswRenZpgQDNCjk8T9e\/Pe8a8yUoeNtkr7Gnc.lV5biKzpTw.FOaS\"\n      \"role\" =&gt; array:1 [\n        0 =&gt; \"admin\"\n      ]\n      \"status\" =&gt; \"active\"\n      \"lng_code\" =&gt; \"en\"\n      \"updated_at\" =&gt; \"2016-04-20 18:46:45\"\n      \"created_at\" =&gt; \"2016-04-20 18:46:45\"\n    ]\n  ]\n]","$_COOKIE":"array:1 [\n  \"PHPSESSID\" =&gt; \"p6ilfp5cgjfgp262irtc4h96i4\"\n]","$_SERVER":"array:33 [\n  \"HTTP_HOST\" =&gt; \"localhost\"\n  \"HTTP_USER_AGENT\" =&gt; \"Mozilla\/5.0 (X11; Linux x86_64; rv:17.0) Gecko\/20100101 Firefox\/17.0\"\n  \"HTTP_ACCEPT\" =&gt; \"text\/html,application\/xhtml+xml,application\/xml;q=0.9,*\/*;q=0.8\"\n  \"HTTP_ACCEPT_LANGUAGE\" =&gt; \"en-US,en;q=0.5\"\n  \"HTTP_ACCEPT_ENCODING\" =&gt; \"gzip, deflate\"\n  \"HTTP_CONNECTION\" =&gt; \"keep-alive\"\n  \"HTTP_REFERER\" =&gt; \"http:\/\/localhost\/gundi\/index.php\/admin\"\n  \"HTTP_COOKIE\" =&gt; \"PHPSESSID=p6ilfp5cgjfgp262irtc4h96i4\"\n  \"PATH\" =&gt; \"\/usr\/local\/sbin:\/usr\/local\/bin:\/usr\/sbin:\/usr\/bin:\/sbin:\/bin\"\n  \"SERVER_SIGNATURE\" =&gt; \"&lt;address&gt;Apache\/2.4.18 (Ubuntu) Server at localhost Port 80&lt;\/address&gt;\\n\"\n  \"SERVER_SOFTWARE\" =&gt; \"Apache\/2.4.18 (Ubuntu)\"\n  \"SERVER_NAME\" =&gt; \"localhost\"\n  \"SERVER_ADDR\" =&gt; \"127.0.0.1\"\n  \"SERVER_PORT\" =&gt; \"80\"\n  \"REMOTE_ADDR\" =&gt; \"127.0.0.1\"\n  \"DOCUMENT_ROOT\" =&gt; \"\/var\/www\/html\"\n  \"REQUEST_SCHEME\" =&gt; \"http\"\n  \"CONTEXT_PREFIX\" =&gt; \"\"\n  \"CONTEXT_DOCUMENT_ROOT\" =&gt; \"\/var\/www\/html\"\n  \"SERVER_ADMIN\" =&gt; \"webmaster@localhost\"\n  \"SCRIPT_FILENAME\" =&gt; \"\/var\/www\/html\/gundi\/index.php\"\n  \"REMOTE_PORT\" =&gt; \"50170\"\n  \"GATEWAY_INTERFACE\" =&gt; \"CGI\/1.1\"\n  \"SERVER_PROTOCOL\" =&gt; \"HTTP\/1.1\"\n  \"REQUEST_METHOD\" =&gt; \"GET\"\n  \"QUERY_STRING\" =&gt; \"\"\n  \"REQUEST_URI\" =&gt; \"\/gundi\/index.php\/admin\"\n  \"SCRIPT_NAME\" =&gt; \"\/gundi\/index.php\"\n  \"PATH_INFO\" =&gt; \"\/admin\"\n  \"PATH_TRANSLATED\" =&gt; \"\/var\/www\/html\/admin\"\n  \"PHP_SELF\" =&gt; \"\/gundi\/index.php\/admin\"\n  \"REQUEST_TIME_FLOAT\" =&gt; 1461157654.086\n  \"REQUEST_TIME\" =&gt; 1461157654\n]"}}, "08630d87fb7aa20a1c39cc0b0f0db91f");
+
+</script><div class="phpdebugbar phpdebugbar-minimized"><div class="phpdebugbar-drag-capture"></div><div class="phpdebugbar-resize-handle"></div><div class="phpdebugbar-header"><div class="phpdebugbar-header-left"><a class="phpdebugbar-tab"><i class="phpdebugbar-fa phpdebugbar-fa-list-alt"></i><span class="phpdebugbar-text">Messages</span><span class="phpdebugbar-badge" style="display: none;"></span></a><a class="phpdebugbar-tab"><i class="phpdebugbar-fa phpdebugbar-fa-tasks"></i><span class="phpdebugbar-text">Timeline</span><span class="phpdebugbar-badge"></span></a><a class="phpdebugbar-tab"><i class="phpdebugbar-fa phpdebugbar-fa-bug"></i><span class="phpdebugbar-text">Exceptions</span><span class="phpdebugbar-badge" style="display: none;"></span></a><a class="phpdebugbar-tab"><i class="phpdebugbar-fa phpdebugbar-fa-tags"></i><span class="phpdebugbar-text">Request</span><span class="phpdebugbar-badge"></span></a></div><div class="phpdebugbar-header-right"><a class="phpdebugbar-close-btn"></a><a class="phpdebugbar-minimize-btn"></a><a class="phpdebugbar-maximize-btn"></a><a class="phpdebugbar-open-btn" style="display: none;"></a><select class="phpdebugbar-datasets-switcher"><option value="08630d87fb7aa20a1c39cc0b0f0db91f">#1 admin (19:07:34)</option></select><span class="phpdebugbar-indicator"><i class="phpdebugbar-fa phpdebugbar-fa-clock-o"></i><span class="phpdebugbar-text">128.27ms</span><span class="phpdebugbar-tooltip">Request Duration</span></span><span class="phpdebugbar-indicator"><i class="phpdebugbar-fa phpdebugbar-fa-cogs"></i><span class="phpdebugbar-text">3.25MB</span><span class="phpdebugbar-tooltip">Memory Usage</span></span></div></div><div class="phpdebugbar-body" style="height: 300px;"><div class="phpdebugbar-panel"><div class="phpdebugbar-widgets-messages"><ul class="phpdebugbar-widgets-list"></ul><div class="phpdebugbar-widgets-toolbar"><i class="phpdebugbar-fa phpdebugbar-fa-search"></i><input type="text" /></div></div></div><div class="phpdebugbar-panel"><ul class="phpdebugbar-widgets-timeline"><li><div class="phpdebugbar-widgets-measure"><span class="phpdebugbar-widgets-value" style="left: 80.32%; width: 19.68%;"></span><span class="phpdebugbar-widgets-label">Application (25.26ms)</span></div></li></ul></div><div class="phpdebugbar-panel"><div class="phpdebugbar-widgets-exceptions"><ul class="phpdebugbar-widgets-list"></ul></div></div><div class="phpdebugbar-panel"><dl class="phpdebugbar-widgets-kvlist phpdebugbar-widgets-varlist"><dt class="phpdebugbar-widgets-key"><span title="$_GET">$_GET</span></dt><dd class="phpdebugbar-widgets-value">[]</dd><dt class="phpdebugbar-widgets-key"><span title="$_POST">$_POST</span></dt><dd class="phpdebugbar-widgets-value">[]</dd><dt class="phpdebugbar-widgets-key"><span title="$_SESSION">$_SESSION</span></dt><dd class="phpdebugbar-widgets-value">array:6 [
+  "GUNDI_secKey" =&gt; "6958d52ca15266f19eb600e3f8c09804"
+  "GUNDI_lng_code" =&gt; "en"
+  "SMA...</dd><dt class="phpdebugbar-widgets-key"><span title="$_COOKIE">$_COOKIE</span></dt><dd class="phpdebugbar-widgets-value">array:1 [
+  "PHPSESSID" =&gt; "p6ilfp5cgjfgp262irtc4h96i4"
+]</dd><dt class="phpdebugbar-widgets-key"><span title="$_SERVER">$_SERVER</span></dt><dd class="phpdebugbar-widgets-value">array:33 [
+  "HTTP_HOST" =&gt; "localhost"
+  "HTTP_USER_AGENT" =&gt; "Mozilla/5.0 (X11; Linux x86_64; rv:1...</dd></dl></div></div><a class="phpdebugbar-restore-btn" style="display: none;"></a></div>
+
+<div class="modal-backdrop fade in"></div></body><canvas id="fxdriver-screenshot-canvas" style="display: none;" width="1280" height="862"></canvas></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" data-ng-app="GundiCatalog" class="no-js before-run ng-scope"><head><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport" />
+    <title>Catalog</title>
+    <script type="text/javascript">
+        Gundi = {
+            Setting: {}
+        };
+        Gundi.Setting['core.path'] = 'http://localhost/gundi/';
+    </script>
+    
+    <!-- Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/default/css/bootstrap.min.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/default/css/bootstrap-extend.min.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/default/css/style.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/default/fonts/web-icons/web-icons.min.css" /><link type="text/css" rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" /><link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css" /></head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<nav role="navigation" class="navbar navbar-default">
+    <a href="#" class="navbar-brand">CATALOG</a>
+</nav>
+
+<!-- END nav -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                Catalog
+            </a>
+        </li>
+        <li>
+            <a data-slug="products" data-ui-sref="products" href="#/">
+                <i aria-hidden="true" class="site-menu-icon wb-grid-4"></i>
+                Products
+            </a>
+        </li>
+        <li>
+            <a data-slug="categories" data-ui-sref="categories" href="#/categories">
+                <i aria-hidden="true" class="site-menu-icon wb-menu"></i>
+                Categories
+            </a>
+        </li>
+    </ul>
+</div>        </div>
+
+        <div class="col-sm-10">
+            <!-- Content -->
+            <!-- uiView:  --><div class="page ng-scope" data-ui-view=""><div data-ng-controller="CategoryAddCtrl" class="ng-scope">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-2">
+                <h1 class="page-title">Categories</h1>
+            </div>
+            <div class="col-sm-8">
+
+            </div>
+
+        </div>
+    </div>
+    <div ng-init="index()" class="page-content container-fluid">
+        <div class="panel">
+            <div class="panel-body container-fluid">
+                <div class="margin-lg-0">
+                    <!-- ngIf: isUpdate==false --><h3 data-ng-if="isUpdate==false" class="ng-scope">Add New</h3><!-- end ngIf: isUpdate==false -->
+                    <!-- ngIf: isUpdate==true -->
+                    <form class="ng-pristine ng-valid">
+                        <label>Category Name</label>
+                        <input type="text" name="category_name" ng-model="category.name" class="form-control ng-pristine ng-untouched ng-valid" />
+                        <label>Parent Category</label>
+                        <select name="category_parent_id" ng-model="category.category_parent_id" class="form-control ng-pristine ng-untouched ng-valid"><option value="? undefined:undefined ?"></option>
+                            <!-- ngRepeat: categoryItem in categories --><option value="1" ng-selected="categoryItem.id == category.category_parent_id" data-ng-repeat="categoryItem in categories" class="ng-binding ng-scope">
+                                Monitors
+                            </option><!-- end ngRepeat: categoryItem in categories --><option value="2" ng-selected="categoryItem.id == category.category_parent_id" data-ng-repeat="categoryItem in categories" class="ng-binding ng-scope">
+                                Processors
+                            </option><!-- end ngRepeat: categoryItem in categories -->
+                        </select><br />
+                        <!-- ngIf: isUpdate==false --><button class="btn btn-primary ng-scope" data-ng-click="add()" type="button" data-ng-if="isUpdate==false">Add</button><!-- end ngIf: isUpdate==false -->
+                        <!-- ngIf: isUpdate==true -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
+            <!-- End Content -->
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script type="text/javascript" src="http://localhost/gundi/static/jquery/jquery.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular/angular.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-ui-router/angular-ui-router.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-infinite/ng-infinite-scroll.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-ui-bootstrap/ui-bootstrap.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-ui-bootstrap/ui-bootstrap-tpls.min.js"></script><script type="text/javascript" src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/bootstrap/bootstrap.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Catalog/Static/app.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Catalog/Static/Controller/product/products.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Catalog/Static/Controller/product/add.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Catalog/Static/Controller/category/categories.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Catalog/Static/Controller/category/add.js"></script>
+</body><canvas id="fxdriver-screenshot-canvas" style="display: none;" width="1280" height="862"></canvas></html>

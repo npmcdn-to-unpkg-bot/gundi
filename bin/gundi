@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * gundi CLI
+ */
+
+define('GUNDI_DS', DIRECTORY_SEPARATOR);
+define('GUNDI_ROOT', __DIR__ . '/..' . GUNDI_DS);
+define('GUNDI_APP_DIR', GUNDI_ROOT . 'app' . GUNDI_DS);
+
+require_once  __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/Setting/Constant.php';
+require_once __DIR__ . '/../app/Setting/App.php';
+
+use Core\Library\Gundi\Gundi;
+use Symfony\Component\Console\Application;
+
+$app = new Application('Gundi', Gundi::VERSION);
+
+$app->add(new bin\Command\Migration\Make('make:migration'));
+$app->add(new bin\Command\Migration\Run('migrate'));
+$app->add(new bin\Command\Migration\Reset('migration:reset'));
+$app->add(new bin\Command\Seed\Run('seed:run'));
+$app->add(new bin\Command\Seed\Make('make:seed'));
+
+$app->run();

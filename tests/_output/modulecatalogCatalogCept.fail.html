@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" data-ng-app="GundiCatalog" class="no-js before-run ng-scope"><head><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport" />
+    <title>Catalog</title>
+    <script type="text/javascript">
+        Gundi = {
+            Setting: {}
+        };
+
+                        Gundi.Setting['db.driver'] = 'mysql';
+                        Gundi.Setting['db.host'] = 'localhost';
+                        Gundi.Setting['db.user'] = 'root';
+                        Gundi.Setting['db.pass'] = 'qaz';
+                        Gundi.Setting['db.name'] = 'test';
+                        Gundi.Setting['db.port'] = '';
+                        Gundi.Setting['core.http'] = 'http://';
+                        Gundi.Setting['core.https'] = 'https://';
+                        Gundi.Setting['core.protocol'] = 'http://';
+                        Gundi.Setting['core.host'] = 'localhost';
+                        Gundi.Setting['core.folder'] = '/gundi/';
+                        Gundi.Setting['core.dir_module'] = '/var/www/html/gundi/app/Module/';
+                        Gundi.Setting['core.tmp_ext'] = '.php';
+                        Gundi.Setting['core.themes_dir'] = '/var/www/html/gundi/app/Template/';
+                        Gundi.Setting['core.app_dir'] = '/var/www/html/gundi/app/';
+                        Gundi.Setting['core.path'] = 'http://localhost/gundi/';
+                        Gundi.Setting['core.prefix'] = 'GUNDI_';
+                        Gundi.Setting['core.session_prefix'] = 'GUNDI_';
+                        Gundi.Setting['core.default_session_container'] = 'GUNDI';
+                            </script>
+    
+    <!-- Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/default/css/bootstrap.min.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/default/css/bootstrap-extend.min.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/default/css/style.css" /><link type="text/css" rel="stylesheet" href="http://localhost/gundi/app/Template/default/fonts/web-icons/web-icons.min.css" /><link type="text/css" rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" /><link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css" /></head>
+<body><div id="toast-container" class="toast-top-right" style="pointer-events: auto;"><div ng-click="tapToast()" class="toast toast-success" toast="">
+  <div on="allowHtml" ng-switch="">
+    <!-- ngSwitchDefault:  --><!-- ngIf: title --><div aria-label="Product successfully disabled" class="toast-title" ng-if="title" ng-switch-default="">Product successfully disabled</div><!-- end ngIf: title --><!-- end ngSwitchWhen: -->
+    <!-- ngSwitchDefault:  --><div aria-label="Product successfully disabled" class="toast-message" ng-switch-default="">Product successfully disabled</div><!-- end ngSwitchWhen: -->
+    <!-- ngSwitchWhen: true -->
+    <!-- ngSwitchWhen: true -->
+  </div>
+  <!-- ngIf: progressBar -->
+</div><div ng-click="tapToast()" class="toast toast-success" toast="">
+  <div on="allowHtml" ng-switch="">
+    <!-- ngSwitchDefault:  --><!-- ngIf: title --><!-- end ngSwitchWhen: -->
+    <!-- ngSwitchDefault:  --><div aria-label="Product successfully updated" class="toast-message" ng-switch-default="">Product successfully updated</div><!-- end ngSwitchWhen: -->
+    <!-- ngSwitchWhen: true -->
+    <!-- ngSwitchWhen: true -->
+  </div>
+  <!-- ngIf: progressBar -->
+</div></div>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<nav role="navigation" class="navbar navbar-default">
+    <a href="#" class="navbar-brand">CATALOG</a>
+</nav>
+
+<!-- END nav -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                Catalog
+            </a>
+        </li>
+        <li>
+            <a data-slug="products" data-ui-sref="products" href="#/">
+                <i aria-hidden="true" class="site-menu-icon wb-grid-4"></i>
+                Products
+            </a>
+        </li>
+        <li>
+            <a data-slug="categories" data-ui-sref="categories" href="#/categories">
+                <i aria-hidden="true" class="site-menu-icon wb-menu"></i>
+                Categories
+            </a>
+        </li>
+    </ul>
+</div>        </div>
+
+        <div class="col-sm-10">
+            <!-- Content -->
+            <!-- uiView:  --><div class="page ng-scope" data-ui-view=""><div data-ng-controller="ProductsCtrl" class="ng-scope">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-2">
+                <h1 class="page-title">Products</h1>
+            </div>
+            <div class="col-sm-8">
+
+            </div>
+            <div id="add-button" class="col-sm-2">
+                <button data-ng-click="delete()" class="btn btn-danger" type="button">
+                    <i aria-hidden="true" class="site-menu-icon wb-close"></i>
+                </button>
+                <button data-slug="product-add" data-ui-sref="product-add" class="btn btn-primary" type="button" href="#/product-add/">
+                    <i aria-hidden="true" class="site-menu-icon wb-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="panel">
+            <div class="panel-body container-fluid">
+                <div class="margin-lg-0">
+                    <div class="table-responsive">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" placeholder="Find..." name="find" id="find" class="form-control" />
+                                <span class="input-group-btn">
+                                  <button class="btn btn-primary" data-ng-click="index('id')" type="submit"><i aria-hidden="true" class="icon wb-search"></i>
+                                  </button>
+                                </span>
+                            </div>
+                        </div>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" id="all_products" name="all_products" data-ng-click="checkAll()" />
+                                </td>
+
+                                <td class="text-left">
+                                    <a data-ng-click="index('name')" href="">Product Name</a>
+                                </td>
+                                <td class="text-left">
+                                    <a data-ng-click="index('category_id')" href="">Category</a>
+                                </td>
+                                <td class="text-left">
+                                    <a data-ng-click="index('price')" href="">Price</a>
+                                </td>
+                                <td class="text-left">
+                                    <a data-ng-click="index('status')" href="">Status</a>
+                                </td>
+                                <td class="text-right">Action</td>
+                            </tr>
+                            </thead>
+                            <tbody infinite-scroll-distance="0" infinite-scroll-disabled="scrollDisable" infinite-scroll="index(false)">
+                            <!-- ngRepeat: product in products --><tr id="product_1" data-ng-repeat="product in products" class="ng-scope">
+                                <td class="text-center">
+                                    <input type="checkbox" value="1" ng-model="product.selected" name="product_id" class="ng-pristine ng-untouched ng-valid" />
+                                </td>
+                                
+                                <td class="text-left ng-binding">LED LCD 18.5</td>
+                                <td class="text-left ng-binding">Monitors</td>
+                                <td class="text-left ng-binding">
+                                    74 $
+                                </td>
+                                <td class="text-left">
+                                    <!-- ngIf: product.status == 'enable' -->
+                                    <!-- ngIf: product.status != 'enable' --><div data-ng-if="product.status != 'enable'" class="ng-scope">
+                                        <i style="cursor:pointer;color:red;" class="icon wb-medium-point" data-ng-click="enable(product.id)"></i>
+                                    </div><!-- end ngIf: product.status != 'enable' -->
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-primary" data-slug="product-add/1" data-ui-sref="product-add({id:product.id})" type="button" href="#/product-add/1">
+                                        <i aria-hidden="true" class="site-menu-icon wb-edit"></i>
+                                    </button>
+                                </td>
+                            </tr><!-- end ngRepeat: product in products --><tr id="product_2" data-ng-repeat="product in products" class="ng-scope">
+                                <td class="text-center">
+                                    <input type="checkbox" value="2" ng-model="product.selected" name="product_id" class="ng-pristine ng-untouched ng-valid" />
+                                </td>
+                                
+                                <td class="text-left ng-binding">CPU LGA1150 Intel Pentium Dual Core G3240 (Haswell)</td>
+                                <td class="text-left ng-binding">Processors</td>
+                                <td class="text-left ng-binding">
+                                    45 $
+                                </td>
+                                <td class="text-left">
+                                    <!-- ngIf: product.status == 'enable' --><div data-ng-if="product.status == 'enable'" class="ng-scope">
+                                        <i style="cursor:pointer;color:green;" class="icon wb-medium-point" data-ng-click="disable(product.id)"></i>
+                                    </div><!-- end ngIf: product.status == 'enable' -->
+                                    <!-- ngIf: product.status != 'enable' -->
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-primary" data-slug="product-add/2" data-ui-sref="product-add({id:product.id})" type="button" href="#/product-add/2">
+                                        <i aria-hidden="true" class="site-menu-icon wb-edit"></i>
+                                    </button>
+                                </td>
+                            </tr><!-- end ngRepeat: product in products --><tr id="product_3" data-ng-repeat="product in products" class="ng-scope">
+                                <td class="text-center">
+                                    <input type="checkbox" value="3" ng-model="product.selected" name="product_id" class="ng-pristine ng-untouched ng-valid" />
+                                </td>
+                                
+                                <td class="text-left ng-binding">testtest2</td>
+                                <td class="text-left ng-binding">Monitors</td>
+                                <td class="text-left ng-binding">
+                                    12312 $
+                                </td>
+                                <td class="text-left">
+                                    <!-- ngIf: product.status == 'enable' --><div data-ng-if="product.status == 'enable'" class="ng-scope">
+                                        <i style="cursor:pointer;color:green;" class="icon wb-medium-point" data-ng-click="disable(product.id)"></i>
+                                    </div><!-- end ngIf: product.status == 'enable' -->
+                                    <!-- ngIf: product.status != 'enable' -->
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-primary" data-slug="product-add/3" data-ui-sref="product-add({id:product.id})" type="button" href="#/product-add/3">
+                                        <i aria-hidden="true" class="site-menu-icon wb-edit"></i>
+                                    </button>
+                                </td>
+                            </tr><!-- end ngRepeat: product in products -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
+            <!-- End Content -->
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script type="text/javascript" src="http://localhost/gundi/static/jquery/jquery.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular/angular.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-ui-router/angular-ui-router.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-infinite/ng-infinite-scroll.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-ui-bootstrap/ui-bootstrap.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/angular-ui-bootstrap/ui-bootstrap-tpls.min.js"></script><script type="text/javascript" src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js"></script><script type="text/javascript" src="http://localhost/gundi/static/bootstrap/bootstrap.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Catalog/Static/app.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Catalog/Static/Controller/product/products.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Catalog/Static/Controller/product/add.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Catalog/Static/Controller/category/categories.js"></script><script type="text/javascript" src="http://localhost/gundi/app/Module/Catalog/Static/Controller/category/add.js"></script>
+</body><canvas id="fxdriver-screenshot-canvas" style="display: none;" width="1280" height="862"></canvas></html>

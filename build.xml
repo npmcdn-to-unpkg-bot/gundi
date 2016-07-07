@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="gundi" basedir="." default="build">
+
+    <property name="selenium.bin" value="java -jar ${project.basedir}/build/tools/selenium/selenium-server.jar"/>
+    <property name="selenium.port" value="4444"/>
+    <property name="codecept.bin" value="${project.basedir}/vendor/bin/codecept"/>
+
+
+    <import file="${project.basedir}/build/extensions.xml" optional="true"/>
+    <import file="${project.basedir}/build/install.xml" optional="true"/>
+
+    <target name="webDriverStart">
+        <if>
+            <socket server="localhost" port="${selenium.port}" />
+            <then>
+                <echo msg="Selenium server all ready started"/>
+            </then>
+            <else>
+                <phingcall target="selenium:launch"/>
+            </else>
+        </if>
+    </target>
+    <target name="selenium:launch"
+            description="Launches a GhostDriver.">
+        <echo>Start ${selenium.bin} --port=${selenium.port}</echo>
+        <exec command="${selenium.bin} -port=${selenium.port}"
+              logoutput="true"
+              checkreturn="true"
+              spawn="true"
+        />
+    </target>
+
+    <target name="tests:unit:run">
+        <codecept.run codeceptbin="${codecept.bin}" type="unit"/>
+    </target>
+
+    <target name="tests:acceptance:run">
+        <codecept.run codeceptbin="${codecept.bin}" type="acceptance"/>
+    </target>
+
+    <target name="build">
+        <echo msg="start building"/>
+    </target>
+</project>
