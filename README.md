@@ -12,7 +12,7 @@ PHP >= 5.5.9
 * Mbstring PHP Extension
 
 Install
--Copy all directories and files to root path of your application.
+ - Copy all directories and files to root path of your application.
 
 Configuration
 
