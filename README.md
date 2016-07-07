@@ -54,11 +54,3 @@ Module files and directories structure:
 * /View - Views of Controllers and Blocks
 * Bootstrap.php - Routes of module and other.
 * info.json - Info of module
-
-COPYRIGHT
-Gundi framework is licensed under Common Public Attribution License 1.0.
-In short the license states that: This software is open source and can be freely used, modified, and distributed;
-This software can be used for commercial purposes;
-Attribution to the authorship of this software in the source code files can not be waived under any circumstances;
-Attribution to the authorship of this software on the site frontend in the form of labels and hyperlinks can be waived with permission of the original author.
-Contact us if you need that for your project.
