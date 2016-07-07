@@ -1,5 +1,5 @@
 # gundi
-php simple framework
+simple php framework
 
 Server Requirements
 The Gundi framework has a few system requirements.
