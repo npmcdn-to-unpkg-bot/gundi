@@ -14,8 +14,8 @@ class Module
      */
     public static function loadCoreModules()
     {
-        self::$_sDirModule = Gundi()->Setting->getParam('core.dir_module');
-        self::loadModules(Gundi()->Setting->getParam('core.modules'));
+        self::$_sDirModule = Gundi()->config->getParam('core.dir_module');
+        self::loadModules(Gundi()->config->getParam('core.modules'));
     }
 
     public static function loadModules($aModules)

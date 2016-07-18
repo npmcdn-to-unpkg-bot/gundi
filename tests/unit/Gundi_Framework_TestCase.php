@@ -1,19 +1,37 @@
 <?php
-use Core\Library\Gundi\Gundi;
+
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Gundi_Framework_TestCase extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject $oGundi
+     * @var \Tests\unit\Stubs\MockGundi
      */
     protected $oGundi;
 
+    /**
+     * @var Capsule
+     */
+    protected $oCapsule;
+    protected $oBootstrap;
+    protected $oConnection;
     protected $aService = [];
 
     public function setUp()
     {
-        $this->oGundi = $this->getMock(Gundi::class, [], [], '', false);
+        $this->oGundi = new \Tests\unit\Stubs\MockGundi();
+        $this->oBootstrap = new \Core\Library\Gundi\Bootstrap($this->oGundi);
+        $aApp = include GUNDI_DIR_SETTING . 'App.php';
+        $this->oBootstrap->boot($aApp);
         $GLOBALS['gundi_instance'] = $this->oGundi;
+        $this->connect();
+    }
+
+    public function tearDown()
+    {
+        if ($this->oCapsule instanceof Capsule) {
+            $this->oCapsule->getConnection()->disconnect();
+        }
     }
 
     /**
@@ -36,21 +54,18 @@ class Gundi_Framework_TestCase extends \PHPUnit_Framework_TestCase
             $sServiceName = $sClass->getShortName();
         }
         $mock = $this->getMock($sClassName, $aMethods, $aArguments, '', $bCallOriginalConstructor, $bCallOriginalClone);
-        if (empty($this->aService)) {
-            $this->defineExpectationForServices();
-        }
         $this->addService($sServiceName, $mock);
         return $mock;
     }
 
-    protected function addService($sName, $oService)
+    protected function make($sClassName, $aParams = [])
     {
-        $this->aService[$sName] = $oService;
+        return $this->oGundi->make($sClassName, $aParams);
     }
 
-    public function getService($serviceName)
+    protected function addService($sName, $oService)
     {
-        return $this->aService[$serviceName];
+        $this->oGundi->aService[$sName] = $oService;
     }
 
     protected  function assertMethodExist($mClass, $sMethod)
@@ -60,11 +75,14 @@ class Gundi_Framework_TestCase extends \PHPUnit_Framework_TestCase
         $this->assertTrue($oReflectionClass->hasMethod($sMethod), "\"$sMethod\" method not exist in class \"$sClass\"");
     }
 
-    private function defineExpectationForServices()
+    protected function connect()
     {
-        $this->oGundi->expects($this->any())
-            ->method('__get')
-            ->will($this->returnCallback([$this, 'getService']));
+        $this->oConnection = $this->oGundi['db']->connection(GUNDI_DB_DRiVER);
+        $this->oCapsule = new Capsule($this->oGundi);
+        $this->oCapsule->addConnection($this->oGundi['config']['database.connections'][GUNDI_DB_DRiVER]);
+        $this->oCapsule->setAsGlobal();
+        $this->oCapsule->setEventDispatcher($this->oGundi['events']);
+        $this->oCapsule->bootEloquent();
+        $this->oGundi->instance(['\Illuminate\Database\Connection' => 'Connection'], $this->oCapsule);
     }
-
 }

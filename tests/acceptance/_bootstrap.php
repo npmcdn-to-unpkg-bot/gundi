@@ -11,6 +11,8 @@ defined('GUNDI_TMP_EXT') or define('GUNDI_TMP_EXT', '.php');
 defined('GUNDI_DIR_SETTING') or define('GUNDI_DIR_SETTING', GUNDI_APP_DIR . 'Setting'. GUNDI_DS);
 defined('GUNDI_THEMES_DIR') or define('GUNDI_THEMES_DIR', GUNDI_APP_DIR . 'Template'. GUNDI_DS);
 
+include_once GUNDI_DIR_SETTING . 'Env.php';
+
 $oSetting = new \Core\Library\Setting\Setting();
 /**
  * connect to db
@@ -18,7 +20,7 @@ $oSetting = new \Core\Library\Setting\Setting();
 $oCapsule = new Capsule();
 
 $oCapsule->addConnection([
-    'driver' => $oSetting->getParam('db.driver'),
+    'driver' => $oSetting->getParam('database.driver'),
     'host' => $oSetting->getParam('db.host'),
     'database' => $oSetting->getParam('db.name'),
     'username' => $oSetting->getParam('db.user'),

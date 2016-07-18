@@ -81,7 +81,7 @@ class Asset implements IExtension
                 $aParts = explode('\\', $sFile);
                 $aInfo = pathinfo($aParts[sizeof($aParts) - 1]);
                 if (isset($aInfo['extension'])) {
-                    $sPath = Gundi()->Setting->getParam('core.path') . $sValue;
+                    $sPath = Gundi()->config->getParam('core.path') . $sValue;
                     $sPath = $sPath . implode('/', $aParts);
                     $sResource = $this->toStr($sPath, $aInfo['extension']);
                     $iOrder = $aInfo['extension'] == $this->_sLastType ? $iOrder : $iInputOrder;

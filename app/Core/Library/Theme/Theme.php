@@ -27,8 +27,8 @@ class Theme
 
     public function __construct()
     {
-        $this->_sTheme = Gundi()->Setting->getParam('core.default_theme_name');
-        $this->_sLayout = Gundi()->Setting->getParam('core.theme_layout');
+        $this->_sTheme = Gundi()->config->getParam('core.default_theme_name');
+        $this->_sLayout = Gundi()->config->getParam('core.theme_layout');
     }
 
     /**

@@ -15,7 +15,7 @@
         "illuminate/events": "^5.1",
         "illuminate/pagination": "^5.1",
         "illuminate/database": "*",
-        "particle/validator": "2.0.0"
+        "watson/validating": "2.2.1"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
@@ -33,7 +33,8 @@
     },
     "autoload-dev": {
         "files": [
-            "tests/unit/Gundi_Framework_TestCase.php"
+            "tests/unit/Gundi_Framework_TestCase.php",
+            "tests/unit/Stubs.php"
         ]
     },
     "bin":["bin/gundi"],

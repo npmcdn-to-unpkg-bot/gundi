@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?=Gundi()->Setting->getParam('core.default_lang_code'); ?>">
+<html lang="<?=Gundi()->config->getParam('core.default_lang_code'); ?>">
 <head>
 
     <!-- Site meta -->

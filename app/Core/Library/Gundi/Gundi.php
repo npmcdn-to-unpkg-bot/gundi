@@ -3,24 +3,29 @@ namespace {
     /**
      * @return \Core\Library\Gundi\Gundi;
      */
-    function Gundi(){
+    function Gundi()
+    {
         return $GLOBALS['gundi_instance'];
     }
 }
 
 namespace Core\Library\Gundi {
 
-    use Illuminate\Contracts\Container\Container;
+    use Illuminate\Container\Container;
+    use Illuminate\Support\Arr;
+    use Illuminate\Support\ServiceProvider;
+
 
     /**
      * @property \Core\library\Router\Router Router
      * @property \Core\Library\View\Html\Extension\Block Block
-     * @property \Core\Library\Setting\Setting Setting
+     * @property \Core\Library\Setting\Setting $config
      * @property \Core\Library\View\Html\Extension\Asset Asset
      * @property \Core\Library\Event\Dispatcher EventDispatcher
+     * @property \Core\Library\Session\Session $Session
      * @method void resolving($abstract, \Closure $callback = null)
      */
-    class Gundi
+    class Gundi extends Container
     {
         /**
          * Gundi Version : major.minor.maintenance
@@ -32,14 +37,124 @@ namespace Core\Library\Gundi {
         const GUNDI_API = '';
         const GUNDI_PACKAGE = 'ultimate';
 
+        /**
+         * All of the registered service providers.
+         *
+         * @var array
+         */
+        protected $_aServiceProviders = [];
+
+        /**
+         * The names of the loaded service providers.
+         *
+         * @var array
+         */
+        protected $_aLoadedProviders = [];
+
+        /**
+         * The deferred services and their providers.
+         *
+         * @var array
+         */
+        protected $deferredServices = [];
+
         public function __construct()
         {
-            $GLOBALS['gundi_instance'] = $this;
+            $this->instance('app', $this);
+            $this->instance('\Illuminate\Container\Container', $this);
+            $this->instance('\Illuminate\Contracts\Container\Container', $this);
+            $this->instance('\Core\Library\Gundi\Gundi', $this);
+            $GLOBALS['gundi_instance'] = &$this;
         }
 
         /**
-         * @var \Illuminate\Container\Container
+         * Register a service provider with the application.
+         *
+         * @param  \Illuminate\Support\ServiceProvider|string $mProvider
+         * @param  array $aOptions
+         * @param  bool $bBorce
+         * @return \Illuminate\Support\ServiceProvider
          */
+        public function register($mProvider, $aOptions = [], $bBorce = false)
+        {
+            if (($bRegistered = $this->getProvider($mProvider)) && !$bBorce) {
+                return $bRegistered;
+            }
+
+            if (is_string($mProvider)) {
+                $mProvider = $this->resolveProviderClass($mProvider);
+            }
+
+            $mProvider->register();
+
+            foreach ($aOptions as $sKey => $mValue) {
+                $this[$sKey] = $mValue;
+            }
+
+            $this->markAsRegistered($mProvider);
+
+            $this->bootProvider($mProvider);
+
+            return $mProvider;
+        }
+
+        /**
+         * Get the registered service provider instance if it exists.
+         *
+         * @param  \Illuminate\Support\ServiceProvider|string $provider
+         * @return \Illuminate\Support\ServiceProvider|null
+         */
+        public function getProvider($provider)
+        {
+            $sName = is_string($provider) ? $provider : get_class($provider);
+
+            return Arr::first($this->_aServiceProviders, function ($key, $value) use ($sName) {
+                return $value instanceof $sName;
+            });
+        }
+
+        /**
+         * Resolve a service provider instance from the class name.
+         *
+         * @param  string $oProvider
+         * @return \Illuminate\Support\ServiceProvider
+         */
+        public function resolveProviderClass($oProvider)
+        {
+            return new $oProvider($this);
+        }
+
+        /**
+         * Mark the given provider as registered.
+         *
+         * @param  \Illuminate\Support\ServiceProvider $oProvider
+         * @return void
+         */
+        protected function markAsRegistered($oProvider)
+        {
+            $sClass = get_class($oProvider);
+            if ($this->isAlias('events')) {
+                $this['events']->fire($sClass, [$oProvider]);
+            }
+
+            $this->_aServiceProviders[] = $oProvider;
+
+            $this->_aLoadedProviders[$sClass] = true;
+        }
+
+        /**
+         * Boot the given service provider.
+         *
+         * @param  \Illuminate\Support\ServiceProvider $provider
+         * @return mixed
+         */
+        protected function bootProvider(ServiceProvider $provider)
+        {
+            if (method_exists($provider, 'boot')) {
+                return $this->call([$provider, 'boot']);
+            }
+        }
+
         private $_oDIContainer = null;
 
         /**
@@ -92,35 +207,6 @@ namespace Core\Library\Gundi {
             return str_replace('.', '', self::VERSION);
         }
 
-        /**
-         * Check if a feature can be used based on the package the client
-         * has installed.
-         *
-         * Example (STRING):
-         * <code>
-         * if (Gundi::isPackage('1') { }
-         * </code>
-         *
-         * Example (ARRAY):
-         * <code>
-         * if (Gundi::isPackage(array('1', '2')) { }
-         * </code>
-         *
-         * @param mixed $mPackage STRING can be used to pass the package ID, or an ARRAY to pass multipl packages.
-         * @return unknown
-         */
-        public function isPackage($mPackage)
-        {
-            if (self::GUNDI_PACKAGE == '[GUNDI_PACKAGE_NAME]') {
-                return false;
-            }
-
-            if (!is_array($mPackage)) {
-                $mPackage = array($mPackage);
-            }
-
-            return (in_array(self::GUNDI_PACKAGE, $mPackage) ? true : false);
-        }
 
         /**
          * Provide "powered by" link.
@@ -133,31 +219,5 @@ namespace Core\Library\Gundi {
         {
             return 'Powered By ' . ($bVersion ? ' Version ' . $this->getVersion() : '');
         }
-
-        public function __call($name, $arguments)
-        {
-            return call_user_func_array([$this->_oDIContainer, $name], $arguments);
-        }
-
-        /**
-         * @return Container
-         */
-        public function getDIContainer()
-        {
-            return $this->_oDIContainer;
-        }
-
-        /**
-         * @param object $oDIContainer
-         */
-        public function setDIContainer(&$oDIContainer)
-        {
-            $this->_oDIContainer = $oDIContainer;
-        }
-
-        public function __get($sName){
-            return $this->_oDIContainer->make($sName);
-        }
-
     }
 }

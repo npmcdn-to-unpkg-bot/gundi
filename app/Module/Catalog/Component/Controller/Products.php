@@ -11,7 +11,7 @@ use Core\Contract\Resource\IEditable;
 use Core\Contract\Resource\IDeleteable;
 use Core\Contract\Resource\IShowable;
 use Core\Library\Validator\Validator;
-use Core\Library\Request\Request;
+use Core\Library\Request\IRequest;
 
 class Products extends Controller implements IAddable, IEditable, IShowable, IDeleteable
 {
@@ -23,7 +23,7 @@ class Products extends Controller implements IAddable, IEditable, IShowable, IDe
     public function __construct(
         ModelCategories $oModelCategories,
         ModelProducts $oModelProducts,
-        Request $oRequest,
+        IRequest $oRequest,
         Error $oError,
         Validator $oValidator
     )

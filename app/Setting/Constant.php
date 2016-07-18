@@ -27,3 +27,4 @@ define('GUNDI_DEBUG', true);
  * log mode
  */
 define('GUNDI_LOG_ERROR', true);
+

@@ -126,7 +126,7 @@ class Url
      */
     public function getDomain()
     {
-        return Gundi()->Setting->getParam('core.path');
+        return Gundi()->config->getParam('core.path');
     }
 
     /**
@@ -136,7 +136,7 @@ class Url
      */
     public function getUrl()
     {
-        return Gundi()->Setting->getParam('core.path') . GUNDI_INDEX_FILE;
+        return Gundi()->config->getParam('core.path') . GUNDI_INDEX_FILE;
     }
 
     /**
@@ -175,7 +175,7 @@ class Url
             $sUrl .= '?' . http_build_query($aParams);
         }
 
-        return ($sUrl == 'current' ? Gundi()->Setting->getParam('core.protocol') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] : $this->getUrl() . '/' . $sUrl);
+        return ($sUrl == 'current' ? Gundi()->config->getParam('core.protocol') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] : $this->getUrl() . '/' . $sUrl);
     }
 
     /**

@@ -2,33 +2,32 @@
 
 namespace Module\Catalog\Component\Controller;
 
+use Core\Contract\Request\IRequest;
 use Core\Library\Component\Controller;
 use Core\Library\Error\Error;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Module\Catalog\Model\Categories as ModelCategories;
 use Core\Contract\Resource\IAddable;
 use Core\Contract\Resource\IEditable;
 use Core\Contract\Resource\IDeleteable;
 use Core\Contract\Resource\IShowable;
-use Core\Library\Validator\Validator;
-use Core\Library\Request\Request;
+use \Watson\Validating\ValidationException;
 
 class Categories extends Controller implements IAddable, IEditable, IShowable, IDeleteable
 {
     private $_oModelCategories;
     private $_oRequest;
     private $_oError;
-    private $_oValidator;
+
     public function __construct(
         ModelCategories $oModelCategories,
-        Request $oRequest,
-        Error $oError,
-        Validator $oValidator
+        IRequest $oRequest,
+        Error $oError
     )
     {
         $this->_oModelCategories = $oModelCategories;
         $this->_oRequest = $oRequest;
         $this->_oError = $oError;
-        $this->_oValidator = $oValidator;
     }
 
     /**
@@ -51,12 +50,12 @@ class Categories extends Controller implements IAddable, IEditable, IShowable, I
      */
     public function add()
     {
-        try{
-            if (!empty($this->_oRequest->get('id'))){
+        try {
+            if (!empty($this->_oRequest->get('id'))) {
                 $this->oView->assign('category', $this->_oModelCategories->findOrFail($this->_oRequest->get('id')));
             }
             $this->oView->assign('categories', $this->_oModelCategories->all());
-        }catch(\Exception $oException){
+        } catch (\Exception $oException) {
             $this->_oError->display($oException->getMessage(), 406, $this->_oRequest->getExt());
         }
     }
@@ -67,17 +66,12 @@ class Categories extends Controller implements IAddable, IEditable, IShowable, I
      */
     public function create()
     {
-        $aCategory = $this->_oRequest->get('category');
-        $this->_oValidator->required('name');
-        if ($this->_oValidator->isValid($aCategory)) {
-            try{
-                if (($aAddedCategory = $this->_oModelCategories->create($aCategory))){
-                    $this->oView->assign('response', ['message' => 'Category successfully added', 'category'=>$aAddedCategory]);
-                }
-            }catch (\Exception $oException){
-                $this->_oError->display($oException->getMessage(), 406, $this->_oRequest->getExt());
-            }
-        }else{
+        try {
+            $aCategory = $this->_oRequest->get('category');
+            $this->_oModelCategories->fill($aCategory);
+            $this->_oModelCategories->saveOrFail();
+            $this->oView->assign('response', ['message' => 'Category successfully added', 'category' => $this->_oModelCategories]);
+        } catch (ValidationException $e) {
             $this->_oError->display('Provide all fields', 406, $this->_oRequest->getExt());
         }
     }
@@ -89,7 +83,7 @@ class Categories extends Controller implements IAddable, IEditable, IShowable, I
      */
     public function delete($mID)
     {
-        if (!$this->_oModelCategories->where($this->_oModelCategories->getKeyName(), $mID)->delete()){
+        if (!$this->_oModelCategories->where($this->_oModelCategories->getKeyName(), $mID)->delete()) {
             $this->_oError->display('Unable delete category from database', 406, $this->_oRequest->getExt());
         }
     }
@@ -100,10 +94,10 @@ class Categories extends Controller implements IAddable, IEditable, IShowable, I
      */
     public function edit($mId)
     {
-        try{
+        try {
             $this->oView->assign('category', $this->_oModelCategories->findOrFail($mId));
-        }catch(\Exception $oException){
-            $this->_oError->display('Category not found with id:'.$mId, 404, $this->_oRequest->getExt());
+        } catch (\Exception $oException) {
+            $this->_oError->display('Category not found with id:' . $mId, 404, $this->_oRequest->getExt());
         }
     }
 
@@ -114,20 +108,17 @@ class Categories extends Controller implements IAddable, IEditable, IShowable, I
     public function update($mId)
     {
 
-        $aCategory = Gundi()->Request->get('category');
-        $this->_oValidator->required('name');
-
-        if ($this->_oValidator->isValid($aCategory)) {
-
-            try {
-                $aUpdated['name'] = $aCategory['name'];
-                $aUpdated['category_parent_id'] = isset($aCategory['category_parent_id'])?$aCategory['category_parent_id']:null;
-                $this->_oModelCategories->where($this->_oModelCategories->getKeyName(),'=', $mId)->update($aUpdated);
-            } catch (\Exception $oException) {
-                $this->_oError->display($oException->getMessage(), 406, $this->_oRequest->getExt());
-            }
-        }else{
+        $aCategory = $this->_oRequest->get('category');
+        try {
+            $aUpdated['name'] = $aCategory['name'];
+            $aUpdated['category_parent_id'] = isset($aCategory['category_parent_id']) ? $aCategory['category_parent_id'] : null;
+            $oCategory = $this->_oModelCategories->find($mId);
+            $oCategory->fill($aUpdated);
+            $oCategory->saveOrFail();
+        } catch (ValidationException $e) {
             $this->_oError->display('Provide all fields', 406, $this->_oRequest->getExt());
+        } catch (\Exception $e) {
+            $this->_oError->display($e->getMessage(), 406, $this->_oRequest->getExt());
         }
     }
 

@@ -9,11 +9,11 @@ use Illuminate\Container\Container;
 class ComponentTest extends \Gundi_Framework_TestCase
 {
     /**
-     * @var \Core\Library\Component
+     * @var \Core\Library\Component\Component
      */
     private $oComponent = null;
     /**
-     * @var \Core\Library\View\Html\HtmlView;
+     * @var \Core\Library\View\Html\View;
      */
     private $oHtmlView = null;
 

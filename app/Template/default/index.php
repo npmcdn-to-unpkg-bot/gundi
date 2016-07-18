@@ -9,7 +9,7 @@
         Gundi = {
             Setting: {}
         };
-        Gundi.Setting['core.path'] = '<?= Gundi()->Setting->getParam('core.path'); ?>';
+        Gundi.Setting['core.path'] = '<?= Gundi()->config->getParam('core.path'); ?>';
     </script>
     <?php
 

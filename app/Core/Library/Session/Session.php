@@ -55,10 +55,10 @@ class Session
          */
         if (is_array($mKey) && $sValue === false) {
             foreach ($mKey as $sName => $sValue) {
-                $_SESSION[Gundi()->Setting->getParam('core.session_prefix') . $sName] = $sValue;
+                $_SESSION[Gundi()->config->getParam('core.session_prefix') . $sName] = $sValue;
             }
         } else {
-            $_SESSION[Gundi()->Setting->getParam('core.session_prefix') . $mKey] = $sValue;
+            $_SESSION[Gundi()->config->getParam('core.session_prefix') . $mKey] = $sValue;
         }
     }
 
@@ -71,9 +71,9 @@ class Session
      */
     public function pull($sKey)
     {
-        if (isset($_SESSION[Gundi()->Setting->getParam('core.session_prefix') . $sKey])) {
-            $value = $_SESSION[Gundi()->Setting->getParam('core.session_prefix') . $sKey];
-            unset($_SESSION[Gundi()->Setting->getParam('core.session_prefix') . $sKey]);
+        if (isset($_SESSION[Gundi()->config->getParam('core.session_prefix') . $sKey])) {
+            $value = $_SESSION[Gundi()->config->getParam('core.session_prefix') . $sKey];
+            unset($_SESSION[Gundi()->config->getParam('core.session_prefix') . $sKey]);
             return $value;
         }
         return null;
@@ -90,12 +90,12 @@ class Session
     public function get($sKey, $sSecondKey = false)
     {
         if ($sSecondKey == true) {
-            if (isset($_SESSION[Gundi()->Setting->getParam('core.session_prefix') . $sKey][$sSecondKey])) {
-                return $_SESSION[Gundi()->Setting->getParam('core.session_prefix') . $sKey][$sSecondKey];
+            if (isset($_SESSION[Gundi()->config->getParam('core.session_prefix') . $sKey][$sSecondKey])) {
+                return $_SESSION[Gundi()->config->getParam('core.session_prefix') . $sKey][$sSecondKey];
             }
         } else {
-            if (isset($_SESSION[Gundi()->Setting->getParam('core.session_prefix') . $sKey])) {
-                return $_SESSION[Gundi()->Setting->getParam('core.session_prefix') . $sKey];
+            if (isset($_SESSION[Gundi()->config->getParam('core.session_prefix') . $sKey])) {
+                return $_SESSION[Gundi()->config->getParam('core.session_prefix') . $sKey];
             }
         }
         return null;
@@ -130,13 +130,13 @@ class Session
             } elseif ($bPrefix == true) {
                 /** clear all session for set session_prefix */
                 foreach ($_SESSION as $sKey => $sValue) {
-                    if (strpos($sKey, Gundi()->Setting->getParam('core.session_prefix')) === 0) {
+                    if (strpos($sKey, Gundi()->config->getParam('core.session_prefix')) === 0) {
                         unset($_SESSION[$sKey]);
                     }
                 }
             } else {
                 /** clear specified session key */
-                unset($_SESSION[Gundi()->Setting->getParam('core.session_prefix') . $sKey]);
+                unset($_SESSION[Gundi()->config->getParam('core.session_prefix') . $sKey]);
             }
         }
     }
