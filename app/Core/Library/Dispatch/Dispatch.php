@@ -74,7 +74,7 @@ class Dispatch implements IDispatch
         $oController = $this->_oContainer->make($aParts[0]);
 
         $oView = $this->_oFactoryView->create($oController, $sFormat, $aParts[1]);
-
+        $oView->assign($mArgs);
         $oController->setView($oView);
         call_user_func_array([$oController, $aParts[1]], $mArgs);
         echo $oView->render();

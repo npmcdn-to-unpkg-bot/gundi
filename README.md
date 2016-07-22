@@ -17,11 +17,11 @@ Install
 Configuration
 
 All of the configuration files for the Gundi framework are stored in the "app/Setting" directory.
-Open Common.php file, check your host path, directory path and enter database connection parameters.
+Open Env.php file, check your host path, directory path and enter database connection parameters.
 
 After configuring, run your terminal cd to root path of application and run few commands:
  - composer update
- - php bin/gundi migrate - for migrate tables
+ - php bin/gundi db:migrate - for migrate tables
  - php bin/gundi seed:run - for inserts data
 
 Run Tests in terminal

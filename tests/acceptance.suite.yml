@@ -6,7 +6,7 @@ modules:
         - Filesystem
     config:
         WebDriver:
-            url: 'http://localhost/gundi/index.php'
+            url: 'http://localhost/gundi'
             browser: 'firefox'
             restart: true
             capabilities:

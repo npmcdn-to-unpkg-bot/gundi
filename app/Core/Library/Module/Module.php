@@ -6,11 +6,9 @@ namespace Core\Library\Module;
 class Module
 {
     static private $_sDirModule;
+
     /**
-     * Initial modules.
-     *
-     * @param  integer $iId
-     * @return $instance
+     * Initial Core modules.
      */
     public static function loadCoreModules()
     {
@@ -25,11 +23,18 @@ class Module
         }
     }
 
+    /**
+     * Initial module
+     * @param $sModuleName
+     */
     public static function loadModule($sModuleName)
     {
         $sBootsFile = self::$_sDirModule . $sModuleName . GUNDI_DS . 'Bootstrap.php';
         if (file_exists($sBootsFile)) {
-            include_once $sBootsFile;
+            $aModuleSetings = include_once $sBootsFile;
+            if (is_array($aModuleSetings)) {
+                Gundi()->Bootstrap->boot($aModuleSetings);
+            }
         }
     }
 }

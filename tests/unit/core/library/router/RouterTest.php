@@ -170,7 +170,7 @@ class RouterTest extends \Gundi_Framework_TestCase
             ['/users/qwe1', 'GET', '/users', 'user', [], ['Controller' => 'user', 'method' => 'show', 'vars' => ['qwe1'],]],
             ['/users/new', 'GET', 'users', 'user', [], ['Controller' => 'user', 'method' => 'add', 'vars' => [],]],
             ['/users/1/edit', 'GET', '/users', 'user', [], ['Controller' => 'user', 'method' => 'edit', 'vars' => [1],]],
-            ['/users/1/edit', 'PUT', '/users', 'user', [], ['Controller' => 'user', 'method' => 'update', 'vars' => [1],]],
+            ['/users/1', 'PUT', '/users', 'user', [], ['Controller' => 'user', 'method' => 'update', 'vars' => [1],]],
             ['/users/1', 'DELETE', '/users', 'user', [], ['Controller' => 'user', 'method' => 'delete', 'vars' => [1],]],
             ['/users', 'POST', '/users', 'user', [], ['Controller' => 'user', 'method' => 'create', 'vars' => [],]],
 
@@ -179,7 +179,7 @@ class RouterTest extends \Gundi_Framework_TestCase
             ['/users/qwerty', 'GET', '/users', 'user', ['edit', 'update'], ['Controller' => 'user', 'method' => 'show', 'vars' => ['qwerty'],]],
             ['/user/new', 'GET', 'user', 'user', ['edit', 'update'], ['Controller' => 'user', 'method' => 'add', 'vars' => [],]],
             ['/users/qwerty/edit', 'GET', '/users', 'user', ['edit', 'update'], ['Controller' => 'error', 'method' => 'notFound', 'vars' => [],]],
-            ['/users/qwerty/edit', 'PUT', '/users', 'user', ['edit', 'update'], ['Controller' => 'error', 'method' => 'notFound', 'vars' => [],]],
+            ['/users/qwerty', 'PUT', '/users', 'user', ['edit', 'update'], ['Controller' => 'error', 'method' => 'notFound', 'vars' => [],]],
             ['/users/qwerty', 'DELETE', '/users', 'user', ['edit', 'update'], ['Controller' => 'user', 'method' => 'delete', 'vars' => ['qwerty'],]],
             ['/users', 'POST', '/users', 'user', ['edit', 'update'], ['Controller' => 'user', 'method' => 'create', 'vars' => [],]],
         ];

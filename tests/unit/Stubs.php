@@ -11,34 +11,38 @@ use Core\Library\View\JsonView;
 class StubRequest extends \ArrayObject implements IRequest
 {
 
+    public static $sExt = 'json';
+    public static $sURI = '/';
+    public static $sMethod = 'GET';
+
     public function get($sName, $sType = null)
     {
-        // TODO: Implement get() method.
+        return $this[$sName];
     }
 
     public function post($sName, $sType = null)
     {
-        // TODO: Implement post() method.
+        return $this[$sName];
     }
 
     public function getExt()
     {
-        // TODO: Implement getExt() method.
+        return self::$sExt;
     }
 
     public function getUri()
     {
-        // TODO: Implement getUri() method.
+        return self::$sURI;
     }
 
     public function getHttpMethod()
     {
-        // TODO: Implement getHttpMethod() method.
+        return self::$sMethod;
     }
 
     public function isPost()
     {
-        // TODO: Implement isPost() method.
+        return self::$sMethod == 'POST';
     }
 }
 

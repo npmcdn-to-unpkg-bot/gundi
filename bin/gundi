@@ -44,8 +44,8 @@ $oGundi->instance(['\Illuminate\Database\Connection' => 'Connection'], $oCapsule
 $app = new Application('Gundi', Gundi::VERSION);
 
 $app->add(new bin\Command\Migration\Make('make:migration'));
-$app->add(new bin\Command\Migration\Run('migrate'));
-$app->add(new bin\Command\Migration\Reset('migration:reset'));
+$app->add(new bin\Command\Migration\Run('db:migrate'));
+$app->add(new bin\Command\Migration\Reset('db:reset'));
 $app->add(new bin\Command\Seed\Run('seed:run'));
 $app->add(new bin\Command\Seed\Make('make:seed'));
 

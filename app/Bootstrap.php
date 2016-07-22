@@ -77,5 +77,6 @@ Module::loadCoreModules();
 /**
  * run handler
  */
+Gundi()->Theme->setLayout('index');
 Gundi()->Dispatch->dispatch();
 

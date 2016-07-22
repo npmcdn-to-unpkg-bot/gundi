@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html class="no-js before-run" lang="en" data-ng-app="GundiCatalog">
+<html lang="<?=Gundi()->config->getParam('core.default_lang_code'); ?>" data-ng-app="gundi">
 <head>
+    <title>News Portal</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Catalog</title>
+
     <script type="text/javascript">
         Gundi = {
             Setting: {}
         };
         Gundi.Setting['core.path'] = '<?= Gundi()->config->getParam('core.path'); ?>';
     </script>
+
     <?php
 
     $this->addStatic([
@@ -18,12 +18,12 @@
         'bootstrap-extend.min.css' => 'app/Template/default/css/',
         'style.css' => 'app/Template/default/css/',
         'web-icons.min.css' => 'app/Template/default/fonts/web-icons/',
-    ], 0);
-
-    $this->addStatic('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
+    ]);
 
     $this->addStatic([
-        'jquery/jquery.js' => 'static/',
+        'jquery/jquery.min.js' => 'static/',
+        'bootstrap/bootstrap.min.js' => 'static/',
+
         'angular/angular.min.js' => 'static/',
         'angular-ui-router/angular-ui-router.min.js' => 'static/',
         'angular-infinite/ng-infinite-scroll.min.js' => 'static/',
@@ -33,51 +33,34 @@
         'https://npmcdn.com/angular-toastr/dist/angular-toastr.css',
         '//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css',
         '//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js',
-        'bootstrap/bootstrap.js' => 'static/',
+        'http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-resource.min.js',
+        '//cdn.ckeditor.com/4.5.9/standard/ckeditor.js',
+        'ng-ckeditor/ng-ckeditor-1.0.1.min.js' => 'static/',
     ]);
 
-    //angular controllers
+    //modules controllers
     $this->addStatic(
         [
-            'Catalog/Static/app.js' => 'app/Module/',
-            'Controller/product/products.js' => 'app/Module/Catalog/Static/',
-            'Controller/product/add.js' => 'app/Module/Catalog/Static/',
-            'Controller/category/categories.js' => 'app/Module/Catalog/Static/',
-            'Controller/category/add.js' => 'app/Module/Catalog/Static/'
+            'Core/Static/app.js' => 'app/Module/',
+            'gundi.news.module.js' => 'app/Module/News/Static/',
+            'Controller/CategoryListController.js' => 'app/Module/News/Static/',
+            'Controller/CategoryNewController.js' => 'app/Module/News/Static/',
+            'Controller/CategoryEditController.js' => 'app/Module/News/Static/',
+            'Controller/NewsListController.js' => 'app/Module/News/Static/',
+            'Controller/NewsNewController.js' => 'app/Module/News/Static/',
+            'Controller/NewsEditController.js' => 'app/Module/News/Static/',
+            'Controller/NewsViewController.js' => 'app/Module/News/Static/',
         ]
     );
     ?>
 
-    <!-- Stylesheets -->
     <?= $this->css(); ?>
 </head>
 <body>
-<!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
-
-<nav class="navbar navbar-default" role="navigation">
-    <a class="navbar-brand" href="#">CATALOG</a>
-</nav>
-
-<!-- END nav -->
-<div class="container">
-    <div class="row">
-        <div class="col-sm-2">
-            <?= $this->block('admin_left_menu') ?>
-        </div>
-
-        <div class="col-sm-10">
-            <!-- Content -->
-            <div data-ui-view class="page"></div>
-            <!-- End Content -->
-        </div>
+    <?= $this->block('news_top_menu') ?>
+    <div class="container">
+        <div data-ui-view class="page"></div>
     </div>
-
-</div>
-
-<!-- Scripts -->
-<?= $this->js(); ?>
+    <?= $this->js(); ?>
 </body>
 </html>

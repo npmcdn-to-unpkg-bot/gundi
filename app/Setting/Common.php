@@ -35,4 +35,4 @@ $_CONF['core.prefix'] = 'GUNDI_';
 $_CONF['core.session_prefix'] = 'GUNDI_';
 $_CONF['core.default_session_container'] = 'GUNDI';
 $_CONF['core.servers'] = [];
-$_CONF['core.modules'] = ['Core', 'Error', 'Catalog'];
+$_CONF['core.modules'] = ['Core', 'News'];

@@ -1,7 +1,7 @@
 <?php
 
+use Core\Library\Gundi\Gundi;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Jenssegers\Mongodb\Connection;
 
 defined('GUNDI_DS') or define('GUNDI_DS', DIRECTORY_SEPARATOR);
 defined('GUNDI_ROOT') or define('GUNDI_ROOT', __DIR__ . '/../..' . GUNDI_DS);
@@ -15,20 +15,10 @@ include_once GUNDI_DIR_SETTING . 'Env.php';
 
 $oSetting = new \Core\Library\Setting\Setting();
 /**
- * connect to db
+ * Connect to DB
  */
 $oCapsule = new Capsule();
-
-$oCapsule->addConnection([
-    'driver' => $oSetting->getParam('database.driver'),
-    'host' => $oSetting->getParam('db.host'),
-    'database' => $oSetting->getParam('db.name'),
-    'username' => $oSetting->getParam('db.user'),
-    'password' => $oSetting->getParam('db.pass'),
-    'charset'   => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix'    => ''
-]);
+$oCapsule->addConnection($oSetting['database.connections'][GUNDI_DB_DRiVER]);
 
 $oCapsule->setAsGlobal();
 $oCapsule->bootEloquent();

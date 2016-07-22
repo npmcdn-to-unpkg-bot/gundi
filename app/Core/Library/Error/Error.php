@@ -47,9 +47,9 @@ class Error
      * @static
      * @param string $sMsg Error message you want to display on the current page the user is on.
      */
-    public static function display($sMsg, $iErrCode = null, $sFormat = 'html')
+    public static function display($sMsg, $iErrCode = null, $sFormat = 'html', $aData = [])
     {
-        Gundi()->Dispatch->dispatchController('\Module\Core\Component\Controller\DisplayError@index', ['sErrorMessage'=>$sMsg], $sFormat);
+        Gundi()->Dispatch->dispatchController('\Module\Core\Component\Controller\DisplayError@index', array_merge(['sErrorMessage'=>$sMsg], $aData), $sFormat);
         if ($iErrCode !== null) {
             header(Gundi()->Url->getHeaderCode($iErrCode));
         }

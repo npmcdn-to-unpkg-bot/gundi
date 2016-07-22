@@ -258,7 +258,7 @@ class Router
             'show' => ['GET', '/(:id)'],
             'add' => ['GET', '/new'],
             'edit' => ['GET', '/(:id)/edit'],
-            'update' => ['PUT', '/(:id)/edit'],
+            'update' => ['PUT', '/(:id)'],
             'delete' => ['DELETE', '/(:id)'],
             'create' => ['POST', '']
         ];
